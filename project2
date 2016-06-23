@@ -1,14 +1,16 @@
+
+
 class Adj:
     def __init__(self):
         self.n=0
         self.next = None
 
 class Vertex:
-    def __init__(self,n):
+    def __init__(self,n ,name):
         self.color = 0          # white
         self.parent = -1        # Nil
         self.d = 1E10    #infty
-        self.name = n
+        self.name = name
         self.n = int(n)
         self.first = None
         
@@ -33,23 +35,13 @@ def print_vertex(vertices,n):
 
 
 def stat():
-    f = open("C:\\HW\\user.txt")
-    p = 0
-    num = 0
-    i = 0
-    user = []
-    for line in f:
-        line = line[0:-1]
-        if (p%4==0):
-            user.append(line)
-            num = num +1
-        p=p+1
-    numuser = len(user)
+    
         
     f=open("C:\\HW\\friend.txt")
     p=0
     num=0
     follower = []
+    following1=[]
     following = []
     for line in f:
         line = line[0:-1]
@@ -58,12 +50,17 @@ def stat():
         elif (p%3==1):
             follower.append(line)
         p=p+1
-
+    for k in following:
+        if k not in following1:
+            following1.append(k)
+            
     f=open("C:\\HW\\word.txt")
     p=0
-    userid=[]
     num=0
     word=[]
+    userid = []
+    userid1=[]
+    
     for line in f:
         line = line[0:-1]
         if (p%4==0):
@@ -71,71 +68,100 @@ def stat():
         elif (p%4==2):
             word.append(line)
         p=p+1
-        
+    for x in userid:
+        if x not in userid1:
+            userid1.append(x)
+    print(userid1)
     
     #user vertex
-    userV = user
-    for i in range(len(userV)):
-        userV[i] = Vertex(user[i])
+    following1V = following1
+    for i in range(len(following1)):
+        following1V[i] = Vertex(following1[i],following1[i])
         i=i+1
     
     followingV = following
     for i in range(len(followingV)):
-        followingV[i] = Vertex(following[i])
+        followingV[i] = Vertex(following[i],following[i])
         i=i+1
 
     followerV = follower
     for k in range(len(followerV)):
-        followerV[k]= Vertex(follower[k])
+        followerV[k]= Vertex(follower[k],follower[k])
         k=k+1
 
+    useridV = userid
+    for k in range(len(useridV)):
+        useridV[k]= Vertex(userid[k],userid[k])
+        k=k+1
+
+    wordV = word
+    for k in range(len(wordV)):
+        wordV[k]= Vertex(k,word[k])
+        k=k+1
+        
+    userid1V = userid1
+    for k in range(len(userid1V)):
+        userid1V[k]= Vertex(userid1[k],userid1[k])
+        k=k+1
+    
+
     j=0
-    cnt = list(range(len(user)))
+    cnt = list(range(len(following1)))
     count=0
-    for i in range(len(user)):
-        while((userV[i].n) == (followingV[j].n)):
-            userV[i].add(followerV[j])
+    j_1= list(range(len(following1)))
+    for i in range(len(following1)-1):
+        while((following1V[i].n) == (followingV[j].n)):
+            following1V[i].add(followerV[j])
             j=j+1
         cnt[i] = j-count
+        j_1[i]=j
         count=j
         i=i+1
+    for k in range(181):
+        print(j_1[k])
 
-
-
-
-
-    useridV= userid
-    for i in range(len(user)):
-        useridV[i]= Vertex(userid[i])
-        i=i+1
-    wordV= word
-    for i in range(len(word)):
-        wordV[i]= Vertex(word[i])
-        i=i+1
-
-    j=0
-    cnt1=list(range(len(user)))
+    """    
+    c=0
+    cnt1= list(range(len(userid)))
     count1=0
-    for i in range(len(user)-1):
-        while((userV[i].n) == (userid[j].n)):
-            userV[i].add(user[j])
-            j=j+1
-        cnt1[i]=j-count1
-        count1=j
-        i=i+1
+    
+    l=0
+    
+    for i in range(0,50):
+        if (i==0):
+            userid1V[i].add(wordV[i])
+            i=i+1
+            
+        else:
+            if((useridV[i].n) == (useridV[i-1].n)):
+                #print("T")
+                userid1V[l].add(wordV[i])
+                i=i+1
+            print(i)
+        cnt1[l]= i-count1   
+        l=l+1
+        userid1V[l].add(wordV[i])
+        
+        count1=i
+   
+    
+                 
+        
 
-         
+    
+    """ 
     print("Average number of friends:", end=" ")
     print((sum(cnt)/len(cnt)))
-    print("Minimum friends: ", end=" ")
+    print("Minimum friends: ", end=' ')
     print(min(cnt))
-    print("Maximum friends: ", end=" ")
+    print("Maximum friends: ", end=' ')
     print(max(cnt))
-    print("Average tweets per user: ", end=" ")
-    print((sum(cnt1)/len((cnt1)))
-    print("Minium tweets per user: ", end=" ")
-    print((min(cnt1))
-    print("Maximu tweets per user: ", end=" ")
-    print((max(cnt1))
-          
+    """
+    print("Average tweets per user: ", end=' ')
+    print((sum(cnt1)/len(cnt1)))
+    print("Minimum tweets per user: ", end=' ')
+    print(min(cnt1))
+    print("Maximum tweets per user: ", end=' ')
+    print(max(cnt1))
+    """
 stat()
