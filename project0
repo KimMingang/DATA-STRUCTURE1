@@ -1,0 +1,45 @@
+def readfile():
+    f = open("C:\\HW\\user.txt")
+    p = 0
+    num = 0
+    user = []
+    for line in f:
+        line = line[0:-1]
+        if (p%4==0):
+            user.append(line)
+            num = num +1
+        p=p+1
+    print("Total users:", end=' ')
+    print(len(user))
+
+    f=open("C:\\HW\\friend.txt")
+    p=0
+    num=0
+    friends = []
+    for line in f:
+        line = line[0:-1]
+        if (p%3==0):
+            friends.append(line)
+            num=num+1
+        p=p+1
+    print("Total friendship records:", end=' ')
+    print(len(friends))
+
+    f=open("C:\\HW\\word.txt")
+    p=0
+    num=0
+    twtuser = []
+    word = []
+    for line in f:
+        line = line[0:-1]
+        if (p%4==0):
+            twtuser.append(line)
+            num=num+1
+        if (p%4==2):
+            word.append(line)
+        p=p+1
+    print("Total tweets:", end=' ')
+    print(len(word))
+
+    
+readfile()
