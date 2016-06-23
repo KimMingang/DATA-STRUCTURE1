@@ -1,5 +1,6 @@
 
 
+
 class Adj:
     def __init__(self):
         self.n=0
@@ -106,9 +107,9 @@ def stat():
     
 
     j=0
-    cnt = list(range(len(following1)))
+    cnt = list(range(len(following1)-1))
     count=0
-    j_1= list(range(len(following1)))
+    j_1= list(range(len(following1)-1))
     for i in range(len(following1)-1):
         while((following1V[i].n) == (followingV[j].n)):
             following1V[i].add(followerV[j])
@@ -117,8 +118,7 @@ def stat():
         j_1[i]=j
         count=j
         i=i+1
-    for k in range(181):
-        print(j_1[k])
+   
 
     """    
     c=0
