@@ -19,16 +19,50 @@ class Vertex:
         a.next = self.first
         self.first = a
 
-def print_vertex(vertices,n):
-    print (vertices[n].name, end=' ')
-    print (vertices[n].color, end=' ')
-    print (vertices[n].parent, end=' ')
-    print (vertices[n].d, end=':')
-    p = vertices[n].first
-    while p:
-        print (p.n, end = ' ')
-        p = p.next
-    print('')
+def readfile():
+    f = open("C:\\HW\\user.txt")
+    p = 0
+    num = 0
+    user = []
+    for line in f:
+        line = line[0:-1]
+        if (p%4==0):
+            user.append(line)
+            num = num +1
+        p=p+1
+    print("Total users:", end=' ')
+    print(len(user))
+
+    f=open("C:\\HW\\friend.txt")
+    p=0
+    num=0
+    friends = []
+    for line in f:
+        line = line[0:-1]
+        if (p%3==0):
+            friends.append(line)
+            num=num+1
+        p=p+1
+    print("Total friendship records:", end=' ')
+    print(len(friends))
+
+    f=open("C:\\HW\\word.txt")
+    p=0
+    num=0
+    twtuser = []
+    word = []
+    for line in f:
+        line = line[0:-1]
+        if (p%4==0):
+            twtuser.append(line)
+            num=num+1
+        if (p%4==2):
+            word.append(line)
+        p=p+1
+    print("Total tweets:", end=' ')
+    print(len(word))
+
+
 
 
 
@@ -145,28 +179,7 @@ def stat():
         top5user.append(userid1V[ind].name)
 
     
-
-    cnt2= list(range(len(word1)-1))
-    count2=0
-    m=0
-    C=[]
-    for i in range(len(word1)-1):
-        while ((word1V[i].name) == (wordV[m].name)):
-                word1V[i].add(wordV[m])
-                m=m+1
-        cnt2[i]=m-count2
-        C.append(cnt2[i])
-        i=i+1
-        count2=m
-
-    D=[]
-    D=sorted(range(len(C)), key=lambda k: C[k], reverse=True)
-    top5word=[]
-    for k in range(0,5):
-        ind=D[k]
-        top5word.append(word1V[ind].name)
-
-  
+    
     
     print("Average number of friends:", end=" ")
     print((sum(cnt)/len(cnt)))
@@ -182,9 +195,32 @@ def stat():
     print(min(cnt1))
     print("Maximum tweets per user: ", end=' ')
     print(max(cnt1))
-    print("Top 5 most tweeted words: ", end=' ')
-    print(top5word)
+    
     print("Top 5 most tweeted users: ", end=' ')
     print(top5user)
     
-stat()
+
+def t5tw():
+    f=open("C:\\HW\\word.txt")
+    p=0
+    num=0
+    word=[]
+    userid = []
+    userid1=[]
+    word1=[]
+    for line in f:
+        line = line[0:-1]
+       
+        if (p%4==2):
+            word.append(line)
+        p=p+1
+    
+    for x in word:
+        if x not in word1:
+            word1.append(x)
+
+    hword1=word1.sort()
+    hword1=word1.sort()
+    
+    
+t5tw()
