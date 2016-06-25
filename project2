@@ -58,7 +58,7 @@ def stat():
     word=[]
     userid = []
     userid1=[]
-    
+    word1=[]
     for line in f:
         line = line[0:-1]
         if (p%4==0):
@@ -69,7 +69,9 @@ def stat():
     for x in userid:
         if x not in userid1:
             userid1.append(x)
-    
+    for x in word:
+        if x not in word1:
+            word1.append(x)
     
     #user vertex
     following1V = following1
@@ -101,8 +103,11 @@ def stat():
     for k in range(len(userid1V)):
         userid1V[k]= Vertex(userid1[k],userid1[k])
         k=k+1
-    
-
+    word1V = word1
+    for k in range(len(word1V)):
+        word1V[k]=Vertex(k, word1[k])
+        k=k+1
+   
     j=0
     cnt = list(range(len(following1)-1))
     count=0
@@ -121,20 +126,47 @@ def stat():
     cnt1= list(range(len(userid1)-1))
     count1=0
     l=0
+    A=[]
     for i in range(len(userid1)-1):
         while ((userid1V[i].n) == (useridV[l].n)):
                 userid1V[i].add(wordV[l])
                 l=l+1
         cnt1[i]=l-count1
+        A.append(cnt1[i])
         i=i+1
         count1=l
-        
-        
-        
-                 
-        
+
+    B=[]    
+    B=sorted(range(len(A)), key=lambda k: A[k], reverse=True)
+ 
+    top5user=[]
+    for k in range(0,5):
+        ind=B[k]
+        top5user.append(userid1V[ind].name)
 
     
+
+    cnt2= list(range(len(word1)-1))
+    count2=0
+    m=0
+    C=[]
+    for i in range(len(word1)-1):
+        while ((word1V[i].name) == (wordV[m].name)):
+                word1V[i].add(wordV[m])
+                m=m+1
+        cnt2[i]=m-count2
+        C.append(cnt2[i])
+        i=i+1
+        count2=m
+
+    D=[]
+    D=sorted(range(len(C)), key=lambda k: C[k], reverse=True)
+    top5word=[]
+    for k in range(0,5):
+        ind=D[k]
+        top5word.append(word1V[ind].name)
+
+  
     
     print("Average number of friends:", end=" ")
     print((sum(cnt)/len(cnt)))
@@ -142,6 +174,7 @@ def stat():
     print(min(cnt))
     print("Maximum friends: ", end=' ')
     print(max(cnt))
+
     
     print("Average tweets per user: ", end=' ')
     print((sum(cnt1)/len(cnt1)))
@@ -149,5 +182,9 @@ def stat():
     print(min(cnt1))
     print("Maximum tweets per user: ", end=' ')
     print(max(cnt1))
+    print("Top 5 most tweeted words: ", end=' ')
+    print(top5word)
+    print("Top 5 most tweeted users: ", end=' ')
+    print(top5user)
     
 stat()
