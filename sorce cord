@@ -25,6 +25,7 @@ class Vertex:
         self.first = None
         
     def add(self, v):
+        
         a = Adj()
         a.n=v.n
         a.name=v.name
@@ -251,6 +252,28 @@ def top5user():
     for x in word:
         if x not in word1:
             word1.append(x)
+
+    useridV = userid
+    for k in range(len(useridV)):
+        useridV[k]= Vertex(userid[k],userid[k])
+        k=k+1
+
+    wordV = word
+    for k in range(len(wordV)):
+        wordV[k]= Vertex(k,word[k])
+        k=k+1
+        
+    userid1V = userid1
+    for k in range(len(userid1V)):
+        userid1V[k]= Vertex(userid1[k],userid1[k])
+        k=k+1
+    word1V = word1
+    for k in range(len(word1V)):
+        word1V[k]=Vertex(k, word1[k])
+        k=k+1
+        
+
+            
     cnt1= list(range(len(userid1)-1))
     count1=0
     l=0
