@@ -181,10 +181,8 @@ def stat():
         cnt1[i]=l-count1
         i=i+1
         count1=l
-
-    
    
-    
+
     
     print("Average number of friends:", end=" ")
     print((sum(cnt)/len(cnt)))
