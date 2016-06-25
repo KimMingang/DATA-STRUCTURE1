@@ -216,11 +216,52 @@ def stat():
     print("Maximum tweets per user: ", end=' ')
     print(max(cnt1))
     
+    
+    
+def top5user():
+    f=open("C:\\HW\\word.txt")
+    p=0
+    num=0
+    word=[]
+    userid = []
+    userid1=[]
+    word1=[]
+    for line in f:
+        line = line[0:-1]
+        if (p%4==0):
+            userid.append(line)
+        elif (p%4==2):
+            word.append(line)
+        p=p+1
+    for x in userid:
+        if x not in userid1:
+            userid1.append(x)
+    for x in word:
+        if x not in word1:
+            word1.append(x)
+    cnt1= list(range(len(userid1)-1))
+    count1=0
+    l=0
+    A=[]
+    for i in range(len(userid1)-1):
+        while ((userid1V[i].n) == (useridV[l].n)):
+                userid1V[i].add(wordV[l])
+                l=l+1
+        cnt1[i]=l-count1
+        A.append(cnt1[i])
+        i=i+1
+        count1=l
+
+    B=[]    
+    B=sorted(range(len(A)), key=lambda k: A[k], reverse=True)
+ 
+    top5user=[]
+    for k in range(0,5):
+        ind=B[k]
+        top5user.append(userid1V[ind].name)
     print("Top 5 most tweeted users: ", end=' ')
     print(top5user)
     
-
-    
 readfile()
 stat()
-
+top5user()
