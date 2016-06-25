@@ -178,7 +178,27 @@ def stat():
         ind=B[k]
         top5user.append(userid1V[ind].name)
 
-    
+    cnt2= list(range(len(word)))
+    count2=0
+    m=0
+    chen=[]
+    C=[]
+    for i in range(len(word1)-1):
+        while ((word1V[i].name) == (wordV[m].name)):
+                m=m+1
+        cnt2[i]=m-count2
+        C.append(cnt2[i])
+        i=i+1
+        count2=m
+        
+    D=[]
+    D=sorted(range(len(C)), key=lambda k: C[k], reverse=True)
+    top5word=[]
+    for k in range(0,5):
+        ind=D[k]
+        top5word.append(word1V[ind].name)
+
+   
     
     
     print("Average number of friends:", end=" ")
@@ -200,27 +220,7 @@ def stat():
     print(top5user)
     
 
-def t5tw():
-    f=open("C:\\HW\\word.txt")
-    p=0
-    num=0
-    word=[]
-    userid = []
-    userid1=[]
-    word1=[]
-    for line in f:
-        line = line[0:-1]
-       
-        if (p%4==2):
-            word.append(line)
-        p=p+1
     
-    for x in word:
-        if x not in word1:
-            word1.append(x)
+readfile()
+stat()
 
-    hword1=word1.sort()
-    hword1=word1.sort()
-    
-    
-t5tw()
