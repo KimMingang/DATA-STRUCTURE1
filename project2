@@ -1,3 +1,15 @@
+print("0. Read data files")
+print("1. display statistics")
+print("2. Top 5 most tweeted words")
+print("3. Top 5 most tweeted users")
+print("4. Find users who tweeted a word")
+print("5. Find all people who are friends of the above users")
+print("6. Delete all mentions of a word")
+print("7. Delete all users who mentioned a word")
+print("8. Find strongly connected components")
+print("9. Find shortest path from a given user")
+print("99. Quit")
+
 class Adj:
     def __init__(self):
         self.n=0
@@ -262,6 +274,46 @@ def top5user():
     print("Top 5 most tweeted users: ", end=' ')
     print(top5user)
     
-readfile()
-stat()
-top5user()
+
+def main():
+    cmdstr = input("Select Menu:")
+    cmd = int(cmdstr)
+    if (cmd==0):
+        readfile()
+        main()
+    elif (cmd==1):
+        stat()
+        main()
+    elif (cmd==2):
+        top5word()
+        main()
+    elif (cmd==3):
+        top5user()
+        main()
+    elif (cmd==4):
+        twtuser()
+        main()
+    elif (cmd==5):
+        friends()
+        main()
+    elif (cmd==6):
+        delword()
+        main()
+    elif (cmd==7):
+        deluser()
+        main()
+    elif (cmd==8):
+        scc()
+        main()
+    elif (cmd==9):
+        shrtpath()
+        main()
+    elif (cmd==99):
+        quit()
+    else:
+        print("Wrong Number")
+        main()
+    
+
+main()
+
