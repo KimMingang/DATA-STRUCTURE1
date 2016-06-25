@@ -179,38 +179,10 @@ def stat():
                 userid1V[i].add(wordV[l])
                 l=l+1
         cnt1[i]=l-count1
-        A.append(cnt1[i])
         i=i+1
         count1=l
 
-    B=[]    
-    B=sorted(range(len(A)), key=lambda k: A[k], reverse=True)
- 
-    top5user=[]
-    for k in range(0,5):
-        ind=B[k]
-        top5user.append(userid1V[ind].name)
-
-    cnt2= list(range(len(word)))
-    count2=0
-    m=0
-    chen=[]
-    C=[]
-    for i in range(len(word1)-1):
-        while ((word1V[i].name) == (wordV[m].name)):
-                m=m+1
-        cnt2[i]=m-count2
-        C.append(cnt2[i])
-        i=i+1
-        count2=m
-        
-    D=[]
-    D=sorted(range(len(C)), key=lambda k: C[k], reverse=True)
-    top5word=[]
-    for k in range(0,5):
-        ind=D[k]
-        top5word.append(word1V[ind].name)
-
+    
    
     
     
